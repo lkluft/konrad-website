@@ -1,6 +1,10 @@
 import konrad
+from typhon.plots import profile_p_log
+import matplotlib.pyplot as plt
 
 def model_run(CO2):
+
+    global atmosphere
 
     atmosphere = konrad.atmosphere.Atmosphere.from_netcdf(
         ncfile='/home/sally/konrad/tutorials/data/tropical-standard.nc',
@@ -20,4 +24,16 @@ def model_run(CO2):
         max_duration='200d',  # Set maximum runtime.
     )
     rce.run()
-    return surface['temperature'][-1]
+
+    return atmosphere, surface['temperature'][-1]
+
+
+def create_figure():
+
+    plev = atmosphere['plev'][:]
+    T = atmosphere['T'][-1, :]
+
+    figure = plt.figure()
+    profile_p_log(plev, T)
+    plt.xlabel('Temperature [K]')
+    return figure
