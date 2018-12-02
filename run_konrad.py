@@ -28,12 +28,45 @@ def model_run(CO2):
     return atmosphere, surface['temperature'][-1]
 
 
+def get_comparison(comparison):
+
+    global comparison_atmosphere
+    global comparison_label
+
+    if comparison == 'none':
+        comparison_atmosphere = None
+        comparison_label = None
+
+    elif comparison == 'pi':
+        # Load pre-industrial atmosphere for comparison
+        # TODO: save data for appropriate comparison runs.
+        # TODO: move this to model_run and also use as starting atmosphere.
+        comparison_atmosphere = konrad.atmosphere.Atmosphere.from_netcdf(
+            ncfile='/home/sally/konrad/tutorials/data/tropical-standard.nc'
+        )
+        comparison_label = 'pre-industrial'
+    elif comparison == 'present':
+        # Load present day atmosphere for comparison
+        comparison_atmosphere = konrad.atmosphere.Atmosphere.from_netcdf(
+            ncfile='/home/sally/konrad/tutorials/data/tropical-standard.nc'
+        )
+        comparison_label = 'present day'
+    return
+
+
 def create_figure():
 
     plev = atmosphere['plev'][:]
     T = atmosphere['T'][-1, :]
 
     figure = plt.figure()
-    profile_p_log(plev, T)
+    profile_p_log(plev, T, label='your run')
+    try:
+        comparison_plev = comparison_atmosphere['plev'][:]
+        comparison_T = comparison_atmosphere['T'][-1, :]
+        profile_p_log(comparison_plev, comparison_T, label=comparison_label)
+    except:
+        pass
+    plt.legend()
     plt.xlabel('Temperature [K]')
     return figure

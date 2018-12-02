@@ -7,7 +7,8 @@
 <body>
     <h2>Model Output</h2>
     <div>Your chosen CO2 concentration was {{ CO2 }} ppmv.</div>
-    <div>This produces a surface temperature of {{ SST }} K.</div>
+    <div>This produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</div>
     <img src="/plot.png" alt="plot of temperature profile">
+    <p><a href="{{ url_for('run_konrad') }}">Run konrad again.</a></p>
 </body>
 </html>

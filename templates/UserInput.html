@@ -11,8 +11,17 @@
             <label for="CO2">CO2 concentration [ppmv]</label>
             <input name="CO2" type="text" />
         </div>
-            <button type="submit">Run model</button>
+
+        <div>
+            <label for="comparison">Compare results with</label>
+            <select name="comparison">
+                <option value="none">None</option>
+                <option value="pi">pre-industrial</option>
+                <option value="present">present day</option>
+            </select>
         </div>
+
+        <button type="submit">Run model</button>
     </form>
 
 </body>
