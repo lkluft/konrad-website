@@ -10,14 +10,60 @@ wsgi_app = app.wsgi_app
 
 @app.route('/')
 def hello():
-    createLink = "<a href='" + url_for('run_konrad') + "'>Start using konrad</a>"
+    UsekonradLink = "<a href='" + url_for('run_konrad') + \
+                    "'>Start using konrad</a>"
+    LinkRRTMG = "<a href='http://rtweb.aer.com/rrtm_frame.html' " \
+                "target='_blank'>RRTMG</a>"
+    Linkpython = "<a href='https://www.python.org/' " \
+                "target='_blank'>python</a>"
+    Linkgithub = "<a href='https://github.com/atmtools/konrad' " \
+                 "target='_blank'>our github page</a>"
+    Linkclimt = "<a href='https://climt.readthedocs.io/en/latest/index.html' " \
+                "target='_blank'>climt</a>"
     return """<html>
                     <head>
                         <title>Welcome to konrad</title>
+                        <style>
+                            body {background-color: #000000;
+                                  color: #f2f2f2;}
+                            a:link {color: #99ccff;}
+                            a:visited {color: #dd99ff;}
+                        </style>
                     </head>
                     <body>
-                        <h2>Welcome</h2>
-                        """ + createLink + """
+                        <h1>Konrad</h1>
+                        <div><font size=5>
+                        Konrad is a single column model of the tropical
+                        atmosphere, from the surface upwards through the
+                        atmosphere.
+                        Konrad is a 1D Radiative-Convective Equilibrium (RCE)
+                        model, because the main processes involved are
+                        radiative transfer (the reflection, absorption,
+                        transmission and scattering of light)
+                        and convection.
+                        Convection only occurs in the lowest part of the
+                        atmosphere, known as the troposphere, where
+                        clouds form.
+                        In konrad, convection simply takes heat
+                        energy from the surface and brings it up
+                        into the troposphere. </font></div>
+                        <br />
+                        <div><font size=3>
+                        Konrad is written in """ + Linkpython + """ and is
+                        available on """ + Linkgithub + """ for anyone to
+                        download and use.
+                        The radiative transfer scheme used in konrad is
+                        """ + LinkRRTMG + """, the development of which started
+                        in the 1990s, and the scheme continues to be used in
+                        many weather prediction and climate models.
+                        """ + LinkRRTMG + """ is written in fortran and made
+                        accessible through python by """ + Linkclimt + """.
+                        </font>
+                        </div>
+                        <br />
+                        <div><font size=5>
+                        """ + UsekonradLink + """
+                        </font></div>
                     </body>
                 </html>"""
 
