@@ -86,7 +86,7 @@ def run_konrad():
         CO2 = request.form.get('CO2')
         try:
             CO2 = float(CO2)
-        except TypeError:
+        except ValueError:
             return render_template('WrongInput.html')
         # input data into model and try to run
         try:

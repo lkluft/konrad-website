@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Model Output</title>
+    <style>
+        body {background-color: #000000;
+              color: #f2f2f2;}
+        a:link {color: #99ccff;}
+        a:visited {color: #dd99ff;}
+    </style>
 </head>
 <body>
     <h2>Model Output</h2>
@@ -10,5 +16,7 @@
     <div>This produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</div>
     <img src="/plot.png" alt="plot of temperature profile">
     <p><a href="{{ url_for('run_konrad') }}">Run konrad again.</a></p>
+    <br />
+    <p><a href="{{ url_for('hello') }}">Read about konrad.</a></p>
 </body>
 </html>

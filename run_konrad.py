@@ -1,6 +1,9 @@
 import konrad
 from typhon.plots import profile_p_log
 import matplotlib.pyplot as plt
+from matplotlib import rcParams
+
+rcParams["legend.facecolor"] = 'k'
 
 def model_run(CO2):
 
@@ -59,7 +62,10 @@ def create_figure():
     plev = atmosphere['plev'][:]
     T = atmosphere['T'][-1, :]
 
-    figure = plt.figure()
+    fig = plt.figure()
+    fig.patch.set_facecolor('k')
+    ax = fig.gca()
+    ax.patch.set_facecolor('k')
     profile_p_log(plev, T, label='your run')
     try:
         comparison_plev = comparison_atmosphere['plev'][:]
@@ -67,6 +73,12 @@ def create_figure():
         profile_p_log(comparison_plev, comparison_T, label=comparison_label)
     except:
         pass
-    plt.legend()
+    for spine in ['bottom', 'left']:
+        ax.spines[spine].set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.tick_params(colors='white')
+    legend = plt.legend()
+    plt.setp(legend.get_texts(), color='w')
     plt.xlabel('Temperature [K]')
-    return figure
+    return fig
