@@ -5,8 +5,22 @@
     <title>Model input</title>
 </head>
 <body>
-    <h2>Please input values</h2>
+    <h2>Some background information</h2>
+    <div><font size=3>
+        Atmospheric CO<sub>2</sub> concentrations have been
+        increasing strongly since
+        <abbr title="In climate science, 'pre-industrial' normally refers to the atmospheric state of 1850. The industrial revolution started about a hundred years before this in Britain, and it brought about many technological advancements. Initially its impact on the environment was small, but this grew over time and as industrialisation spread to other parts of the world.">pre-industrial times</abbr>,
+        when they were about 280
+        <abbr title="parts per million by volume">ppmv</abbr>.
+        CO<sub>2</sub> is a greenhouse gas, which means that it absorbs and
+        emits
+        <abbr title="In climate science, longwave radiation describes the radiation emitted from the surface and the atmosphere, a lot of which is infrared.">longwave radiation</abbr>.
+        This stops some of the radiation from escaping to space and causes the
+        surface and troposphere to warm.
+    </font></div>
+    <h1>Select input values</h1>
     <form method="post">
+        <font size=5>
         <div>
             <label for="CO2">CO<sub>2</sub> concentration [ppmv]</label>
             <input name="CO2" type="text" />
@@ -20,8 +34,8 @@
                 <option value="present">present day</option>
             </select>
         </div>
-
-        <button type="submit">Get results</button>
+            <button type="submit">Get results</button>
+        </font>
     </form>
 
 </body>

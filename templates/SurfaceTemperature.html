@@ -5,12 +5,21 @@
     <title>Model Output</title>
 </head>
 <body>
-    <h2>Model Output</h2>
-    <div>Your chosen CO<sub>2</sub> concentration was {{ CO2 }} ppmv.</div>
-    <div>This produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</div>
-    <div> {{plot|safe}} </div>
-    <p><a href="{{ url_for('run_konrad') }}">Run konrad again.</a></p>
+    <h2>Disclaimer</h2>
+    <div><font size=3>
+        Konrad is not the real world, it is just a simple representation of it.
+        The plot shows the equilibrium temperature profile calculated by konrad.
+        It would take thousands of years for the real Earth system to reach
+        equilibrium.
+    </font></div>
     <br />
-    <p><a href="{{ url_for('hello') }}">Read about konrad.</a></p>
+    <h1>Model Output</h1>
+    <font size=5>
+    <div>Your chosen CO<sub>2</sub> concentration was {{ CO2 }} ppmv.</div>
+    <div>In konrad, this produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</div></font>
+    <div> {{plot|safe}} </div>
+    <div><a href="{{ url_for('run_konrad') }}">Run konrad again.</a></div>
+    <br />
+    <div><a href="{{ url_for('hello') }}">Read about konrad.</a></div>
 </body>
 </html>
