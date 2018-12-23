@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome to konrad</title>
+    </head>
+    <body>
+        <h1>Konrad</h1>
+        <div><font size=5>
+        Konrad is a single column model of the tropical atmosphere, from the
+        surface upwards through the atmosphere.
+        This kind of model is a 1D Radiative-Convective Equilibrium (RCE) model,
+        because the main processes involved are
+            <abbr title="the reflection, absorption, transmission and scattering of light">radiative transfer</abbr>
+        and
+            <abbr title="the rising motion of warm low density air over colder denser air">convection</abbr>.
+        Convection only occurs in
+            <abbr title="the lowest part of the atmosphere, where temperature decreases with height">the troposphere</abbr>,
+        and causes cloud formation.
+        In konrad, convection takes heat energy from the surface and brings it
+        up into the troposphere, but it does not model cloud formation.
+        Many real world processes are missing from konrad, including the effects
+        of planetary rotation.
+        This is not very important in the tropics, so we can still learn some
+        interesting things about the real tropical atmosphere.</font></div>
+        <br />
+        <div><font size=3>
+        Konrad is written in
+            <a href='https://www.python.org/' target='_blank'>python</a>
+        and is available on
+            <a href='https://github.com/atmtools/konrad' target='_blank'>our github page</a>
+        for anyone to download and use.
+        The radiative transfer scheme used in konrad is
+            <a href='http://rtweb.aer.com/rrtm_frame.html' target='_blank'>RRTMG</a>,
+        the development of which started in the 1990s, and the scheme
+        continues to be used in many weather prediction and climate models.
+            <a href='http://rtweb.aer.com/rrtm_frame.html' target='_blank'>RRTMG</a>
+        is written in fortran and made accessible through python by
+            <a href='https://climt.readthedocs.io/en/latest/index.html' target='_blank'>climt</a>.
+        </font>
+        </div>
+        <br />
+        <div><font size=5>
+        <a href=" {{ url_for('run_konrad') }} ">Start using konrad</a>
+        </font></div>
+        <br />
+        <div><font size=5>
+        <a href=" {{ url_for('about_us') }} ">About the developers</a>
+        </font></div>
+    </body>
+</html>
