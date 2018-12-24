@@ -1,64 +1,48 @@
-import konrad
-from typhon.plots import profile_p_log
 import matplotlib.pyplot as plt
 import mpld3
 import numpy as np
+from netCDF4 import Dataset
 
 
-def model_run(CO2):
+def get_data(CO2, humidity):
 
-    global atmosphere
-    global surface
+    ds = Dataset('database.nc')
+    humidity_options = ds['humidity'][:]
+    co2_values = ds['CO2'][:]
 
-    atmosphere = konrad.atmosphere.Atmosphere.from_netcdf(
-        ncfile='/home/sally/konrad/tutorials/data/tropical-standard.nc',
-    )
-    #atmosphere.tracegases_rcemip()
-    p = atmosphere['plev'][:]
-    atmosphere['CO2'][:] = CO2*10**-6
-    surface = konrad.surface.SurfaceHeatCapacity()
-    rce = konrad.RCE(
-        atmosphere,
-        surface=surface,
-        radiation=konrad.radiation.RRTMG(),  # Use RRTMG radiation scheme.
-        cloud=konrad.cloud.ClearSky(z=p),
-        convection=konrad.convection.HardAdjustment(),  # Perform a hard convective adjustment.
-        lapserate=konrad.lapserate.MoistLapseRate(),  # Adjust towards a moist adiabat.
-        timestep='16h',  # Set timestep in model time.
-        max_duration='200d',  # Set maximum runtime.
-    )
-    rce.run()
+    humidity_index = int(np.argwhere(humidity_options == humidity))
+    co2_index = int(np.argwhere(co2_values == CO2))
 
-    return atmosphere, surface['temperature'][-1]
+    T = np.hstack((ds['temperature'][co2_index, humidity_index],
+                  ds['T'][co2_index, humidity_index, :]))
+    z = np.hstack(([0], ds['z'][co2_index, humidity_index, :]*0.001))
+
+    return T, z
+
+
+def model_run(CO2, humidity):
+
+    global T, z
+    T, z = get_data(CO2, humidity)
+    return T, z
 
 
 def get_comparison(comparison):
 
-    global comparison_atmosphere
-    global comparison_label
-    global comparison_surface
+    global comparison_T, comparison_z, comparison_label
 
     if comparison == 'none':
-        comparison_atmosphere = None
+        comparison_T = None
+        comparison_z = None
         comparison_label = None
-        comparison_surface = None
 
     elif comparison == 'pi':
-        # Load pre-industrial atmosphere for comparison
-        # TODO: save data for appropriate comparison runs.
-        # TODO: move this to model_run and also use as starting atmosphere.
-        comparison_atmosphere = konrad.atmosphere.Atmosphere.from_netcdf(
-            ncfile='/home/sally/konrad/tutorials/data/tropical-standard.nc'
-        )
+        comparison_T, comparison_z = get_data(280, 'rh')
         comparison_label = 'pre-industrial'
-        comparison_surface = konrad.surface.SurfaceHeatCapacity.from_atmosphere(comparison_atmosphere)
-    elif comparison == 'present':
-        # Load present day atmosphere for comparison
-        comparison_atmosphere = konrad.atmosphere.Atmosphere.from_netcdf(
-            ncfile='/home/sally/konrad/tutorials/data/tropical-standard.nc'
-        )
+
+    elif comparison == 'present':  # CO2 = 400 ppmv
+        comparison_T, comparison_z = get_data(400, 'rh')
         comparison_label = 'present day'
-        comparison_surface = konrad.surface.SurfaceHeatCapacity.from_atmosphere(comparison_atmosphere)
     return
 
 
@@ -86,16 +70,9 @@ def create_interactive_figure():
     }
     """
 
-    T = np.hstack((surface['temperature'][-1], atmosphere['T'][-1, :]))
-    z = np.hstack(([0], atmosphere['z'][-1, :] * 0.001))
-
     fig = plt.figure(figsize=(5, 7))
     ax = fig.gca()
     try:  # plot comparison if requested
-        comparison_z = np.hstack(([0],
-                                  comparison_atmosphere['z'][-1, :] * 0.001))
-        comparison_T = np.hstack((comparison_surface['temperature'][-1],
-                                  comparison_atmosphere['T'][-1, :]))
         points_ref = ax.plot(comparison_T, comparison_z, marker='o', ms=5,
                              label=comparison_label, c='#0099ff')
 
@@ -106,7 +83,9 @@ def create_interactive_figure():
 
         tooltip_ref = mpld3.plugins.PointHTMLTooltip(
             points_ref[0], labels_ref, voffset=10, hoffset=10, css=css)
-    except TypeError:
+        comparison = True
+    except ValueError:
+        comparison = False
         pass
 
     points = ax.plot(T, z, marker='o', ms=5, label='your run', c='#ff3300')
@@ -124,9 +103,9 @@ def create_interactive_figure():
     tooltip_user = mpld3.plugins.PointHTMLTooltip(
         points[0], labels, voffset=10, hoffset=10, css=css)
 
-    try:
+    if comparison:
         mpld3.plugins.connect(fig, tooltip_user, tooltip_ref)
-    except:
+    else:
         mpld3.plugins.connect(fig, tooltip_user)
 
     return mpld3.fig_to_html(fig)

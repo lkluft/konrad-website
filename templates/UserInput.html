@@ -23,7 +23,18 @@
         <font size=5>
         <div>
             <label for="CO2">CO<sub>2</sub> concentration [ppmv]</label>
-            <input name="CO2" type="text" />
+            <select name="CO2">
+                {% for co2 in co2_options %}
+                <option value= "{{co2}}" SELECTED>{{co2}}</option>"
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="humidity">Humidity treatment</label>
+            <select name="humidity">
+                <option value="rh">fixed relative humidity</option>
+                <option value="280vmr">pre-industrial humidity</option>
+            </select>
         </div>
 
         <div>
