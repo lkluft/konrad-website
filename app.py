@@ -27,11 +27,12 @@ def run_konrad():
         # read form data and check data type
         humidity = request.form.get('humidity')
         CO2 = int(request.form.get('CO2'))
+        albedo = round(float(request.form.get('albedo')), 2)
         # get T and z corresponding to the selected input
-        T, z = model_run(CO2, humidity)
+        T, z = model_run(CO2, humidity, albedo)
         # display result
         comparison = request.form.get('comparison')
-        get_comparison(str(comparison))
+        get_comparison(str(comparison), humidity, albedo)
         mpld3_html = plot_interactive_png()
         return render_template(
             'SurfaceTemperature.html', CO2=CO2, SST=T[0], plot=mpld3_html)

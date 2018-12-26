@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <title>Welcome to konrad</title>
     </head>
     <body>
@@ -23,6 +24,27 @@
             <abbr title="Latitude is an angle describing closeness to the equator. The tropics are at low latitudes, and the polar regions are at high latitudes.">latitudes</abbr>.
         Despite this, we can still learn some
         interesting things about the real tropical atmosphere.</font></div>
+        <br />
+        <div><font size=3>
+            For a certain set of input parameters (the amounts of various gases,
+            an initial temperature profile, surface properties, the amount of
+            incoming solar radiation), we use a radiative transfer scheme
+            to calculate radiative heating rates.
+            These are applied to the input temperature profile, producing a
+            new temperature profile.
+            If the new temperature profile is unstable to convection, a
+            convective adjustment is applied.
+            This changes the temperature profile again, giving us another new
+            temperature profile.
+            Then we calculate changes in other atmospheric properties, such as
+            the water vapour concentration.
+            The new set of parameters is used as input to the radiative
+            transfer scheme and the whole process is repeated many times.
+            Eventually, the change to the temperature profile becomes very
+            small, and we say that the system has reached equilibrium.
+            It could take thousands of years for the real Earth system to get
+            to equilibrium.
+        </font></div>
         <br />
         <div><font size=3>
         Konrad is written in

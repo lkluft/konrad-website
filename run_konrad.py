@@ -4,30 +4,33 @@ import numpy as np
 from netCDF4 import Dataset
 
 
-def get_data(CO2, humidity):
+def get_data(CO2, humidity, albedo):
 
     ds = Dataset('database.nc')
     humidity_options = ds['humidity'][:]
     co2_values = ds['CO2'][:]
+    albedo_values = ds['albedo'][:]
 
     humidity_index = int(np.argwhere(humidity_options == humidity))
     co2_index = int(np.argwhere(co2_values == CO2))
+    albedo_index = int(np.argwhere(albedo_values == albedo))
 
-    T = np.hstack((ds['temperature'][co2_index, humidity_index],
-                  ds['T'][co2_index, humidity_index, :]))
-    z = np.hstack(([0], ds['z'][co2_index, humidity_index, :]*0.001))
+    T = np.hstack((ds['temperature'][co2_index, humidity_index, albedo_index],
+                  ds['T'][co2_index, humidity_index, albedo_index, :]))
+    z = np.hstack(([0],
+                   ds['z'][co2_index, humidity_index, albedo_index, :]*0.001))
 
     return T, z
 
 
-def model_run(CO2, humidity):
+def model_run(CO2, humidity, albedo):
 
     global T, z
-    T, z = get_data(CO2, humidity)
+    T, z = get_data(CO2, humidity, albedo)
     return T, z
 
 
-def get_comparison(comparison):
+def get_comparison(comparison, humidity, albedo):
 
     global comparison_T, comparison_z, comparison_label
 
@@ -37,11 +40,11 @@ def get_comparison(comparison):
         comparison_label = None
 
     elif comparison == 'pi':
-        comparison_T, comparison_z = get_data(280, 'rh')
+        comparison_T, comparison_z = get_data(280, humidity, albedo)
         comparison_label = 'pre-industrial'
 
     elif comparison == 'present':  # CO2 = 400 ppmv
-        comparison_T, comparison_z = get_data(400, 'rh')
+        comparison_T, comparison_z = get_data(400, humidity, albedo)
         comparison_label = 'present day'
     return
 
