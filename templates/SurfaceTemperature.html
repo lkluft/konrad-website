@@ -11,8 +11,8 @@
     <div>Your chosen CO<sub>2</sub> concentration was {{ CO2 }} ppmv.</div>
     <div>In konrad, this produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</div></font>
     <div> {{plot|safe}} </div>
-    <div><a href="{{ url_for('run_konrad') }}">Run konrad again.</a></div>
+    <font size=5><div><a href="{{ url_for('run_konrad') }}">Choose model input.</a></div>
     <br />
-    <div><a href="{{ url_for('hello') }}">Read about konrad.</a></div>
+    <div><a href="{{ url_for('hello') }}">Read about konrad.</a></div></font>
 </body>
 </html>
