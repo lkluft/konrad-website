@@ -24,7 +24,6 @@ def get_data(CO2, humidity, albedo):
 
 
 def model_run(CO2, humidity, albedo):
-
     global T, z
     T, z = get_data(CO2, humidity, albedo)
     return T, z

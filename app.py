@@ -21,21 +21,27 @@ def plot_interactive_png():
 def run_konrad():
     co2_options = np.arange(280, 601, 20)
     if request.method == 'GET':
+        state = {'co2': 400, 'humidity': 'rh', 'albedo': 0.2,
+                 'comparison': 'pi'}
         # send the user the form
-        return render_template('UserInput.html', co2_options=co2_options)
+        return render_template('UserInput.html', co2_options=co2_options,
+                               state=state)
     elif request.method == 'POST':
         # read form data and check data type
         humidity = request.form.get('humidity')
-        CO2 = int(request.form.get('CO2'))
+        co2 = int(request.form.get('CO2'))
         albedo = round(float(request.form.get('albedo')), 2)
         # get T and z corresponding to the selected input
-        T, z = model_run(CO2, humidity, albedo)
+        T, z = model_run(co2, humidity, albedo)
         # display result
         comparison = request.form.get('comparison')
         get_comparison(str(comparison), humidity, albedo)
         mpld3_html = plot_interactive_png()
+        state = {'co2': co2, 'albedo': albedo, 'comparison': comparison,
+                 'humidity': humidity}
         return render_template(
-            'SurfaceTemperature.html', CO2=CO2, SST=T[0], plot=mpld3_html)
+            'SurfaceTemperature.html', co2_options=co2_options, SST=T[0],
+            plot=mpld3_html, state=state)
     else:
         return "<h2>Invalid request</h2>"
 

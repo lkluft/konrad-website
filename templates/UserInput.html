@@ -30,14 +30,14 @@
         <abbr title="a fraction of the saturation humidity" tabindex="-1">relative humidity</abbr>
         remains constant.
     </div></font>
-    <h1>Select input values</h1>
+    <h1>Model input</h1>
     <form method="post">
         <font size=5>
         <div>
             <label for="CO2">CO<sub>2</sub> concentration [ppmv]</label>
             <select name="CO2">
                 {% for co2 in co2_options %}
-                <option value= "{{co2}}" SELECTED>{{co2}}</option>"
+                <option value="{{co2}}" {% if co2 == state.co2 %}selected{% endif %}>{{co2}}</option>
                 {% endfor %}
             </select>
         </div>
@@ -68,6 +68,7 @@
             <button type="submit">Get results</button>
         </div>
         </font>
+        <div id="content">{% block content %}{% endblock %}</div>
     </form>
 
 </body>

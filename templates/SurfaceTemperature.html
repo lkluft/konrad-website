@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" xmins="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Model Output</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
-<body>
-    <h1>Model Output</h1>
+{% extends "UserInput.html" %}
+{% block content %}
+    <h1>Model output</h1>
     <font size=5>
-    <div>Your chosen CO<sub>2</sub> concentration was {{ CO2 }} ppmv.</div>
-    <div>In konrad, this produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</div></font>
+    Your model input produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</font>
     <div> {{plot|safe}} </div>
-    <font size=5><div><a href="{{ url_for('run_konrad') }}">Choose model input.</a></div>
-    <br />
-    <div><a href="{{ url_for('hello') }}">Read about konrad.</a></div></font>
-</body>
-</html>
+    <a href="{{ url_for('hello') }}">Read about konrad.</a></font>
+{% endblock %}
