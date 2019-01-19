@@ -14,7 +14,11 @@
             surface upwards through the atmosphere.
             This kind of model is a 1D Radiative-Convective Equilibrium (RCE) model,
             because the main processes involved are
-            <abbr title="the reflection, absorption, transmission and scattering of light" tabindex="-1">radiative transfer</abbr>
+            <button class="collapsible">radiative transfer</button>
+            <div class="content">
+                <p>In models of the atmosphere, radiative transfer describes how light from the Sun and heat from the Earth travel through and interact with the atmosphere.</p>
+                <img src="{{ url_for('static', filename='radiative.jpg') }}" alt="This sentence should be a diagram for radiative transfer...">
+            </div>
             and
             <abbr title="the rising motion of warm low density air over colder denser air" tabindex="-1">convection</abbr>.
             Many real world processes are missing from konrad, including
@@ -70,5 +74,23 @@
         <div><font size=5>
         <a href=" {{ url_for('about_us') }} ">About the developers</a>
         </font></div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
     </body>
 </html>

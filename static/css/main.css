@@ -2,14 +2,17 @@
 div {
   margin-left: 15px;
   margin-right: 15px;
+  font-family: sans-serif;
 }
 
 h1 {
   margin-left: 15px;
+  font-family: sans-serif;
 }
 
 h2 {
   margin-left: 15px;
+  font-family: sans-serif;
 }
 
 abbr {
@@ -29,4 +32,33 @@ abbr:focus::after {
   width: 100%;
   padding: 1em;
   box-sizing: border-box;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: green;
+}
+
+
+.collapsible {
+  color: green;
+  cursor: pointer;
+  border: none;
+  padding: 0em;
+  font-size: 100%;
+  font-family: sans-serif;
+  text-align: left;
+  text-decoration: underline;
+  outline: none;
+  background-color: white;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+  background-color: white;
+  color: green;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: green;
 }
