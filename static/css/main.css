@@ -1,9 +1,4 @@
 
-abbr {
-  font-variant: none;
-  color: green;
-}
-
 div {
   margin-left: 15px;
   margin-right: 15px;
@@ -15,4 +10,23 @@ h1 {
 
 h2 {
   margin-left: 15px;
+}
+
+abbr {
+  font-variant: none;
+  color: green;
+  cursor: pointer;
+}
+
+abbr:not(:focus) {
+  cursor: pointer;
+}
+
+abbr:focus::after {
+  cursor: auto;
+  content: attr(title);
+  display: inline-block; /* Get rid of parent's text decoration */
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
 }
