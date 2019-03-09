@@ -4,5 +4,7 @@
     <font size=5>
     Your model input produces a surface temperature of {{ "{0:.1f}".format(SST) }} K.</font>
     <div> {{plot|safe}} </div>
-    <a href="{{ url_for('hello') }}">Read about konrad.</a></font>
+    <div><font size=4>
+        <a href="{{ url_for('hello') }}">Go back to the introduction to konrad</a></font>
+    </div>
 {% endblock %}

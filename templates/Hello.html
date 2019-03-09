@@ -17,6 +17,9 @@
             <abbr title="the reflection, absorption, transmission and scattering of light" tabindex="-1">radiative transfer</abbr>
             and
             <abbr title="the rising motion of warm low density air over colder denser air" tabindex="-1">convection</abbr>.
+        </font></div>
+        <img src="{{ url_for('static', filename='profile-with-background.png') }}" alt="This sentence should be a diagram of the atmosphere with height.">
+        <div><font size=5>
             Many real world processes are missing from konrad, including
             cloud formation, winds and heat transport from the tropics to mid or high
             <abbr title="Latitude is an angle describing closeness to the equator. The tropics are at low latitudes, and the polar regions are at high latitudes." tabindex="-1">latitudes</abbr>.
@@ -25,50 +28,18 @@
             how the temperature depends on different gases,
             <abbr title="power per unit area of radiation received from the Sun" tabindex="-1">solar irradiance</abbr>,
             the strength of convection, and the properties of clouds.
-            </font></div>
+        </font></div>
         <br />
         <div><font size=4>
-            For a certain set of input parameters (the amounts of various gases,
-            an initial temperature profile, surface properties, the amount of
-            incoming solar radiation), we use a radiative transfer scheme
-            to calculate radiative heating rates.
-            These are applied to the input temperature profile, producing a
-            new temperature profile.
-            If the new temperature profile is unstable to convection, a
-            convective adjustment is applied in
-            <abbr title="the lowest part of the atmosphere, where temperature decreases with height" tabindex="-1">the troposphere</abbr>.
-            This changes the temperature profile again, giving us another new
-            temperature profile.
-            Then we calculate changes in other atmospheric properties, such as
-            the water vapour concentration.
-            The new set of parameters is used as input to the radiative
-            transfer scheme and the whole process is repeated many times.
-            Eventually, the change to the temperature profile becomes very
-            small, and we say that the system has reached equilibrium.
+            <a href=" {{ url_for('read_about_konrad') }} ">Read more about konrad</a>
         </font></div>
         <br />
-        <div><font size=3>
-        Konrad is written in
-            <a href='https://www.python.org/' target='_blank'>python</a>
-        and is available on
-            <a href='https://github.com/atmtools/konrad' target='_blank'>our github page</a>
-        for anyone to download and use.
-        The radiative transfer scheme used in konrad is
-            <a href='http://rtweb.aer.com/rrtm_frame.html' target='_blank'>RRTMG</a>,
-        the development of which started in the 1990s, and the scheme
-        continues to be used in many weather prediction and climate models.
-            <a href='http://rtweb.aer.com/rrtm_frame.html' target='_blank'>RRTMG</a>
-        is written in fortran and made accessible through python by
-            <a href='https://climt.readthedocs.io/en/latest/index.html' target='_blank'>climt</a>.
-        </font>
-        </div>
-        <br />
-        <div><font size=5>
-        <a href=" {{ url_for('run_konrad') }} ">Start using konrad</a>
+        <div><font size=4>
+            <a href=" {{ url_for('run_konrad') }} ">Start using konrad</a>
         </font></div>
         <br />
-        <div><font size=5>
-        <a href=" {{ url_for('about_us') }} ">About the developers</a>
+        <div><font size=4>
+            <a href=" {{ url_for('about_us') }} ">About the developers</a>
         </font></div>
     </body>
 </html>

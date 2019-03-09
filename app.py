@@ -54,6 +54,14 @@ def about_us():
         return "<h2>Invalid request</h2>"
 
 
+@app.route('/read_about_konrad', methods=['GET'])
+def read_about_konrad():
+    if request.method == 'GET':
+        return render_template('ModelDetails.html')
+    else:
+        return "<h2>Invalid request</h2>"
+
+
 # Launching our server
 if __name__ == '__main__':
     import os
