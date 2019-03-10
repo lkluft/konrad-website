@@ -4,47 +4,51 @@ import numpy as np
 from netCDF4 import Dataset
 
 
-def get_data(CO2, humidity, albedo):
+def get_data(exp, output):
 
-    ds = Dataset('database.nc')
-    humidity_options = ds['humidity'][:]
-    co2_values = ds['CO2'][:]
-    albedo_values = ds['albedo'][:]
+    ds = Dataset('database_new.nc')
+    experiments = ds['exp'][:]
 
-    humidity_index = int(np.argwhere(humidity_options == humidity))
-    co2_index = int(np.argwhere(co2_values == CO2))
-    albedo_index = int(np.argwhere(albedo_values == albedo))
+    exp_index = int(np.argwhere(experiments == exp))
 
-    T = np.hstack((ds['temperature'][co2_index, humidity_index, albedo_index],
-                  ds['T'][co2_index, humidity_index, albedo_index, :]))
-    z = np.hstack(([0],
-                   ds['z'][co2_index, humidity_index, albedo_index, :]*0.001))
+    z = ds['z'][exp_index, :]*0.001
+    if 'T' in output:
+        z = np.hstack(([0], z))
+        T = np.hstack((ds['temperature'][exp_index],
+                  ds['T'][exp_index, :]))
+        xlabel = 'Temperature'
+        xunits = 'K'
+        if output == 'T_C':
+            T -= 273.15
+            xunits = 'Celcius'
+    elif output == 'radlw':
+        T = ds['radlw'][exp_index, :]
+        xlabel = 'Longwave heating'
+        xunits = 'K / day'
+    elif output == 'radsw':
+        T = ds['radsw'][exp_index, :]
+        xlabel = 'Shortwave heating'
+        xunits = 'K / day'
+    elif output == 'conv':
+        T = ds['conv'][exp_index, :]
+        xlabel = 'Convective heating'
+        xunits = 'K / day'
 
-    return T, z
+    return z, T, xlabel, xunits
 
 
-def model_run(CO2, humidity, albedo):
-    global T, z
-    T, z = get_data(CO2, humidity, albedo)
-    return T, z
+def model_run(exp, output):
+    global T, z, xlabel, xunits
+    z, T, xlabel, xunits = get_data(exp, output)
+    return T, z, xlabel, xunits
 
 
-def get_comparison(comparison, humidity, albedo):
+def get_comparison(output):
 
     global comparison_T, comparison_z, comparison_label
 
-    if comparison == 'none':
-        comparison_T = None
-        comparison_z = None
-        comparison_label = None
-
-    elif comparison == 'pi':
-        comparison_T, comparison_z = get_data(280, humidity, albedo)
-        comparison_label = 'pre-industrial'
-
-    elif comparison == 'present':  # CO2 = 400 ppmv
-        comparison_T, comparison_z = get_data(400, humidity, albedo)
-        comparison_label = 'present day'
+    comparison_z, comparison_T, xlabel, xunits = get_data('standard', output)
+    comparison_label = 'standard'
     return
 
 
@@ -80,7 +84,7 @@ def create_interactive_figure():
 
         labels_ref = []
         for i in range(comparison_z.size):
-            label_ref = '<h6>Height: {:.1f} km<br>Temperature: {:.1f} K</h6>'.format(comparison_z[i], comparison_T[i])
+            label_ref = '<h6>Height: {:.1f} km<br>{}: {:.1f} {}</h6>'.format(comparison_z[i], xlabel, comparison_T[i], xunits)
             labels_ref.append(label_ref)
 
         tooltip_ref = mpld3.plugins.PointHTMLTooltip(
@@ -91,7 +95,7 @@ def create_interactive_figure():
         pass
 
     points = ax.plot(T, z, marker='o', ms=5, label='your run', c='#ff3300')
-    plt.xlabel('Temperature [K]')
+    plt.xlabel(f'{xlabel} [{xunits}]')
     plt.ylabel('Height [km]')
     plt.ylim(0, np.max(z))
     leg = plt.legend()
@@ -99,7 +103,7 @@ def create_interactive_figure():
 
     labels = []
     for i in range(z.size):
-        label = '<h5>Height: {:.1f} km<br>Temperature: {:.1f} K</h5>'.format(z[i], T[i])
+        label = '<h5>Height: {:.1f} km<br>{}: {:.1f} {}</h5>'.format(z[i], xlabel, T[i], xunits)
         labels.append(label)
 
     tooltip_user = mpld3.plugins.PointHTMLTooltip(

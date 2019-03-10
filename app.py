@@ -19,29 +19,29 @@ def plot_interactive_png():
 
 @app.route('/run_konrad', methods=['GET', 'POST'])
 def run_konrad():
-    co2_options = np.arange(280, 601, 20)
     if request.method == 'GET':
-        state = {'co2': 400, 'humidity': 'rh', 'albedo': 0.2,
-                 'comparison': 'pi'}
+        state = {'exp': 'co2x2', 'output': 'T'}
         # send the user the form
-        return render_template('UserInput.html', co2_options=co2_options,
+        return render_template('UserInput.html',
                                state=state)
     elif request.method == 'POST':
         # read form data and check data type
-        humidity = request.form.get('humidity')
-        co2 = int(request.form.get('CO2'))
-        albedo = round(float(request.form.get('albedo')), 2)
-        # get T and z corresponding to the selected input
-        T, z = model_run(co2, humidity, albedo)
-        # display result
-        comparison = request.form.get('comparison')
-        get_comparison(str(comparison), humidity, albedo)
+        exp = request.form.get('exp')
+        output = request.form.get('output')
+        T, z, xlabel, xunits = model_run(exp, output)
+        get_comparison(output)
         mpld3_html = plot_interactive_png()
-        state = {'co2': co2, 'albedo': albedo, 'comparison': comparison,
-                 'humidity': humidity}
-        return render_template(
-            'SurfaceTemperature.html', co2_options=co2_options, SST=T[0],
-            plot=mpld3_html, state=state)
+        state = {'exp': exp, 'output': output}
+        if output == 'T':
+            return render_template(
+                'SurfaceTemperature.html', SST=T[0], plot=mpld3_html,
+                state=state
+            )
+        else:
+            return render_template(
+                'ModelOutput.html', plot=mpld3_html, state=state
+            )
+
     else:
         return "<h2>Invalid request</h2>"
 

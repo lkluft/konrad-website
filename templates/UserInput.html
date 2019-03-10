@@ -30,40 +30,31 @@
         <abbr title="a fraction of the saturation humidity" tabindex="-1">relative humidity</abbr>
         remains constant.
     </div></font>
-    <h1>Model input</h1>
+    <h1>Experiments</h1>
     <form method="post">
         <font size=5>
         <div>
-            <label for="CO2">CO<sub>2</sub> concentration [ppmv]</label>
-            <select name="CO2">
-                {% for co2 in co2_options %}
-                <option value="{{co2}}" {% if co2 == state.co2 %}selected{% endif %}>{{co2}}</option>
-                {% endfor %}
+            <label for="exp">Select experiment</label>
+            <select name="exp">
+                <option value="noconv" {% if state.exp =='noconv' %} SELECTED{% endif %}>No convection</option>
+                <option value="co2x2" {% if state.exp =='co2x2' %} SELECTED{% endif %}>Double CO<sub>2</sub></option>
+                <option value="co2x4" {% if state.exp =='co2x4' %} SELECTED{% endif %}>Quadruple CO<sub>2</sub></option>
+                <option value="ozone" {% if state.exp =='ozone' %} SELECTED{% endif %}>No ozone</option>
+                <option value="upwelling025" {% if state.exp =='upwelling025' %} SELECTED{% endif %}>Upwelling</option>
+                <option value="lapse65" {% if state.exp =='lapse65' %} SELECTED{% endif %}>Fixed lapse rate</option>
             </select>
         </div>
         <div>
-            <label for="humidity">Humidity treatment</label>
-            <select name="humidity">
-                <option value="rh">fixed relative humidity</option>
-                <option value="280vmr">pre-industrial humidity</option>
-            </select>
-        </div>
-        <div>
-            <label for="albedo">Surface albedo</label>
-            <select name="albedo">
-                <option value="0.2">0.2 (grass)</option>
-                <option value="0.07">0.07 (ocean)</option>
+            <label for="output">Select output</label>
+            <select name="output">
+                <option value="T" {% if state.output =='T' %} SELECTED{% endif %}>Temperature [K]</option>
+                <option value="T_C" {% if state.output =='T_C' %} SELECTED{% endif %}>Temperature [Celcius]</option>
+                <option value="radlw" {% if state.output =='radlw' %} SELECTED{% endif %}>Longwave radiative heating</option>
+                <option value="radsw" {% if state.output =='radsw' %} SELECTED{% endif %}>Shortwave radiative heating</option>
+                <option value="conv" {% if state.output =='conv' %} SELECTED{% endif %}>Convective heating</option>
             </select>
         </div>
 
-        <div>
-            <label for="comparison">Compare results with</label>
-            <select name="comparison">
-                <option value="none">None</option>
-                <option value="pi">pre-industrial</option>
-                <option value="present">present day</option>
-            </select>
-        </div>
         <div>
             <button type="submit">Get results</button>
         </div>
