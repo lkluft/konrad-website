@@ -1,10 +1,5 @@
-
-h1 {
-  margin-left: 15px;
-}
-
-h2 {
-  margin-left: 15px;
+body {
+    margin-left: 15px;
 }
 
 abbr {
@@ -20,8 +15,7 @@ abbr:not(:focus) {
 abbr:focus::after {
   cursor: auto;
   content: attr(title);
-  display: inline-block; /* Get rid of parent's text decoration */
+  display: inline-block;
   width: 100%;
-  padding: 1em;
-  box-sizing: border-box;
+  padding: 0.5em;
 }
