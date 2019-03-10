@@ -1,0 +1,7 @@
+Flask==1.0.2
+netCDF4==1.4.0
+mpld3==0.3
+matplotlib==2.2.2
+numpy==1.15.2
+
+gunicorn==19.7.1
