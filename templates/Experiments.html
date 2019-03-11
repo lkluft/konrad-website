@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmins="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <h1>Experiments</h1>
+    <div>
+        <font size=5>
+            <a href=" {{ url_for('convection_exp') }} ">No convection</a>
+        </font>
+        <font size=3>
+            <p>What happens if we turn off convection and only have radiation?
+            </p>
+        </font>
+    </div>
+    <div>
+        <font size=5>
+            <a href=" {{ url_for('ozone_exp') }} ">No ozone</a>
+        </font>
+        <font size=3>
+            <p>Ozone absorbs lots of radiation from the Sun, how cold
+            would the stratosphere be without it?</p>
+        </font>
+    </div>
+    <div>
+        <font size=5>
+            <a href=" {{ url_for('co2_exp') }} ">Increase CO<sub>2</sub></a>
+        </font>
+        <font size=3>
+            <p>How does increasing CO<sub>2</sub> affect the atmospheric
+            temperature profile. What other factors are important?</p>
+        </font>
+    </div>
+</body>
+</html>

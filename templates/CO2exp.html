@@ -2,7 +2,7 @@
 <html lang="en" xmins="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Model input</title>
+    <title>CO<sub>2</sub> Experiment</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
@@ -34,33 +34,19 @@
     <form method="post">
         <font size=5>
         <div>
-            <label for="exp">Select experiment</label>
+            <label for="exp">Increase CO<sub>2</sub></label>
             <select name="exp">
-                <option value="noconv" {% if state.exp =='noconv' %} SELECTED{% endif %}>No convection</option>
-                <option value="co2x2" {% if state.exp =='co2x2' %} SELECTED{% endif %}>Double CO<sub>2</sub></option>
-                <option value="co2x4" {% if state.exp =='co2x4' %} SELECTED{% endif %}>Quadruple CO<sub>2</sub></option>
-                <option value="ozone" {% if state.exp =='ozone' %} SELECTED{% endif %}>No ozone</option>
-                <option value="upwelling025" {% if state.exp =='upwelling025' %} SELECTED{% endif %}>Upwelling</option>
-                <option value="lapse65" {% if state.exp =='lapse65' %} SELECTED{% endif %}>Fixed lapse rate</option>
+                <option value="co2x2" {% if state.exp =='co2x2' %} SELECTED{% endif %}>two times</option>
+                <option value="co2x4" {% if state.exp =='co2x4' %} SELECTED{% endif %}>four times</option>
             </select>
         </div>
-        <div>
-            <label for="output">Select output</label>
-            <select name="output">
-                <option value="T" {% if state.output =='T' %} SELECTED{% endif %}>Temperature [K]</option>
-                <option value="T_C" {% if state.output =='T_C' %} SELECTED{% endif %}>Temperature [Celcius]</option>
-                <option value="radlw" {% if state.output =='radlw' %} SELECTED{% endif %}>Longwave radiative heating</option>
-                <option value="radsw" {% if state.output =='radsw' %} SELECTED{% endif %}>Shortwave radiative heating</option>
-                <option value="conv" {% if state.output =='conv' %} SELECTED{% endif %}>Convective heating</option>
-            </select>
-        </div>
-
+            {% include 'SelectOutput.html' %}
         <div>
             <button type="submit">Get results</button>
         </div>
         </font>
-        <div id="content">{% block content %}{% endblock %}</div>
     </form>
+    <div id="content">{% block content %}{% endblock %}</div>
 
 </body>
 </html>

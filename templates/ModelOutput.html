@@ -1,8 +1,14 @@
-{% extends "UserInput.html" %}
-{% block content %}
-    <h1>Model output</h1>
-    <div> {{plot|safe}} </div>
-    <div><font size=4>
-        <a href="{{ url_for('hello') }}">Go back to the introduction to konrad</a></font>
-    </div>
-{% endblock %}
+<div> {{plot|safe}} </div>
+<div><font size=3>
+    Hover below the left corner of the figure and select the magnifying glass
+    to zoom.
+</font></div>
+<br />
+<div><font size=4>
+    <a href="{{ url_for('hello') }}">Go back to the introduction to konrad</a>
+</font></div>
+<div><font size=4>
+    <br />
+    <a href="{{ url_for('experiments') }}">Go back to see the other experiments</a>
+</font></div>
+

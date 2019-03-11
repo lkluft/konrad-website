@@ -1,0 +1,10 @@
+<div>
+    <label for="output">Select output</label>
+    <select name="output">
+        <option value="T" {% if state.output =='T' %} SELECTED{% endif %}>Temperature [K]</option>
+        <option value="T_C" {% if state.output =='T_C' %} SELECTED{% endif %}>Temperature [Celcius]</option>
+        <option value="radlw" {% if state.output =='radlw' %} SELECTED{% endif %}>Longwave radiative heating</option>
+        <option value="radsw" {% if state.output =='radsw' %} SELECTED{% endif %}>Shortwave radiative heating</option>
+        <option value="conv" {% if state.output =='conv' %} SELECTED{% endif %}>Convective heating</option>
+    </select>
+</div>

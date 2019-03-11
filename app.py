@@ -17,13 +17,12 @@ def plot_interactive_png():
     return create_interactive_figure()
 
 
-@app.route('/run_konrad', methods=['GET', 'POST'])
-def run_konrad():
+@app.route('/co2_exp', methods=['GET', 'POST'])
+def co2_exp():
     if request.method == 'GET':
         state = {'exp': 'co2x2', 'output': 'T'}
         # send the user the form
-        return render_template('UserInput.html',
-                               state=state)
+        return render_template('CO2exp.html', state=state)
     elif request.method == 'POST':
         # read form data and check data type
         exp = request.form.get('exp')
@@ -39,9 +38,45 @@ def run_konrad():
             )
         else:
             return render_template(
-                'ModelOutput.html', plot=mpld3_html, state=state
+                'CO2Output.html', plot=mpld3_html, state=state
             )
 
+    else:
+        return "<h2>Invalid request</h2>"
+
+
+def one_experiment(templatename='OzoneExp.html', outputname='OzoneOutput.html',
+                   codename='ozone'):
+    if request.method == 'GET':
+        state = {'output': 'T'}
+        return render_template(templatename, state=state)
+    elif request.method == 'POST':
+        output = request.form.get('output')
+        T, z, xlabel, xunits = model_run(codename, output)
+        get_comparison(output)
+        mpld3_html = plot_interactive_png()
+        state = {'output': output}
+        return render_template(
+            outputname, plot=mpld3_html, state=state
+        )
+    else:
+        return "<h2>Invalid request</h2>"
+
+
+@app.route('/ozone_exp', methods=['GET', 'POST'])
+def ozone_exp():
+    return one_experiment()
+
+
+@app.route('/convection_exp', methods=['GET', 'POST'])
+def convection_exp():
+    return one_experiment('ConvExp.html', 'ConvOutput.html', 'noconv')
+
+
+@app.route('/experiments', methods=['GET'])
+def experiments():
+    if request.method == 'GET':
+        return render_template('Experiments.html')
     else:
         return "<h2>Invalid request</h2>"
 
