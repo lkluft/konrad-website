@@ -34,10 +34,17 @@
     <form method="post">
         <font size=5>
         <div>
-            <label for="exp">Increase CO<sub>2</sub></label>
-            <select name="exp">
-                <option value="co2x2" {% if state.exp =='co2x2' %} SELECTED{% endif %}>two times</option>
-                <option value="co2x4" {% if state.exp =='co2x4' %} SELECTED{% endif %}>four times</option>
+            <label for="exp1">Increase CO<sub>2</sub></label>
+            <select name="exp1">
+                <option value="co2x2" {% if state.exp1 =='co2x2' %} SELECTED{% endif %}>two times</option>
+                <option value="co2x4" {% if state.exp1 =='co2x4' %} SELECTED{% endif %}>four times</option>
+            </select>
+        </div>
+        <div>
+            <label for="exp2">Water vapour feedback</label>
+            <select name="exp2">
+                <option value="" {% if state.exp2 =='' %} SELECTED{% endif %}>on</option>
+                <option value="_fvmr" {% if state.exp2 =='_fvmr' %} SELECTED{% endif %}>off</option>
             </select>
         </div>
             {% include 'SelectOutput.html' %}

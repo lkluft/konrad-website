@@ -45,12 +45,15 @@ def model_run(exp, output):
     return T, z, xlabel, xunits
 
 
-def get_comparison(output):
+def get_comparison(output, SST=False):
 
     global comparison_T, comparison_z, comparison_label
 
     comparison_z, comparison_T, xlabel, xunits = get_data('standard', output)
     comparison_label = 'standard'
+
+    if SST:
+        return comparison_T[0]
     return
 
 
