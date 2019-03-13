@@ -12,32 +12,35 @@
          style="width:272px;height:657px;">
     <div><font size=5>
         For a certain set of
-        <abbr title="data that is fed to the model" tabindex="-1">input parameters</abbr>
+        <abbr title="data that is fed to the model" tabindex="-1">input
+            parameters</abbr>
         (the amounts of various gases, an initial temperature profile, surface
         properties, the amount of incoming solar radiation), we use a
         <abbr title="A radiative transfer scheme is a model that calculates how
         much of the incoming radiation is reflected, absorbed, scattered and
         transmitted by the atmosphere we use as input. It also calculates how
         much radiation is emitted by the surface and atmosphere and how much of
-        this is absorbed or transmitted as it makes it way upwards to
-        space." tabindex="-1">radiative transfer scheme</abbr>
+        this is absorbed or transmitted as it makes it way upwards to space."
+              tabindex="-1">radiative transfer scheme</abbr>
         to calculate
         <abbr title="As molecules absorb radiation, they gains energy and the
         atmosphere warms. On the other hand, if the molecules emit radiation,
         they lose energy and the atmosphere cools. The heating rate describes
-        how quickly the atmosphere warms or cools." tabindex="-1">radiative heating rates</abbr>.
-        These are applied to the input temperature profile, producing a
-        new temperature profile.
+        how quickly the atmosphere warms or cools." tabindex="-1">radiative
+            heating rates</abbr>.
+        We add the change in temperature to the input temperature profile,
+        producing a new temperature profile.
         If the new temperature profile is
         <abbr title="A temperature profile is unstable to convection if the
         temperature of the surface or lowest layers of the atmosphere is much
         larger than the temperatures above. When this happens in the real
         atmosphere, the warm air below rises over the cold dense air above."
-        tabindex="-1">unstable to convection</abbr>, a
+              tabindex="-1">unstable to convection</abbr>, a
         <abbr title="In the model, we do not have motion of air. Instead our
         convective adjustment just changes the temperature of the surface and
         atmosphere. The temperature change we apply is similar to that which
-        occurs through motion of air in convection in the real world." tabindex="-1">convective adjustment</abbr>
+        occurs through motion of air in convection in the real world."
+              tabindex="-1">convective adjustment</abbr>
         is applied in the
         <abbr title="the lowest part of the atmosphere, where temperature
         decreases with height" tabindex="-1">troposphere</abbr>.
@@ -47,8 +50,11 @@
         the water vapour concentration, which depends on the temperature.
         The new set of parameters is used as input to the radiative
         transfer scheme and the whole process is repeated many times.
-        Eventually, the change to the temperature profile becomes very
-        small, and we say that the system has reached equilibrium.
+        Eventually, the
+        <abbr title="the change due to radiation plus the change due to
+        convection" tabindex="-1">total change</abbr> to the temperature
+        profile becomes very small, and we say that the system has reached
+        equilibrium.
     </font></div>
     <br />
     <div><font size=4>
