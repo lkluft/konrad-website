@@ -75,6 +75,11 @@ def convection_exp():
     return one_experiment('ConvExp.html', 'ConvOutput.html', 'noconv')
 
 
+@app.route('/sun_exp', methods=['GET', 'POST'])
+def sun_exp():
+    return one_experiment('SunExp.html', 'SunOutput.html', 'sun-weak')
+
+
 @app.route('/experiments', methods=['GET'])
 def experiments():
     if request.method == 'GET':
