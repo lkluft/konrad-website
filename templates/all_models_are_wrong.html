@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All models are wrong</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+    <h1>Model approximations</h1>
+    <div><font size="4">
+        Models are approximations of real systems.
+        By definition, they are not reality, but if they include good
+        descriptions of the most important parts of the system, they can be
+        useful.
+    </font></div>
+    <br />
+    <div><font size="5"><i>"All models are wrong but some are useful"</i></font>
+        <font size=3>George Box (statistician), 1970s.</font>
+    </div>
+    <br />
+    <font size="4"><div>
+        Konrad contains lots of approximations.
+        One assumption we make is that there are no clouds.
+        Clouds and changes in clouds can affect the atmospheric temperature
+        profile and how the atmosphere reacts to changes in CO<sub>2</sub> or
+        other factors.
+    </div><br /><div>
+        The
+        <abbr title="A radiative transfer scheme is a model that calculates how
+        much of the incoming radiation is reflected, absorbed, scattered and
+        transmitted by the atmosphere we use as input. It also calculates how
+        much radiation is emitted by the surface and atmosphere and how much of
+        this is absorbed or transmitted as it makes it way upwards to space."
+              tabindex="-1">radiative transfer scheme</abbr>
+        in konrad also contains many approximations.
+        It was designed for the current climate of Earth.
+        When we remove all of the ozone in konrad, this drastically changes
+        the temperature profile and under these conditions the radiation scheme
+        has large errors.
+    </div><br /><div>
+        Konrad models the
+        <abbr title="near the equator" tabindex="-1">tropical</abbr>
+        atmosphere and does not include heat transport from the tropics to mid
+        or high
+        <abbr title="Latitude is an angle describing closeness to the equator.
+        The tropics are at low latitudes, and the polar regions are at high
+        latitudes." tabindex="-1">latitudes</abbr>.
+        Instead, so that the atmosphere in the model does not get too hot, we
+        reduce the amount of incoming solar radiation.
+        In this way, we assume that all the heat transport occurs in the
+        atmosphere, while in reality some of the heat is transported by ocean
+        currents.
+    </div>
+    </font>
+    <br />
+    <font size="4">
+    <div>
+        <a href="{{ url_for('hello') }}">Go back to the introduction</a>
+    </div><br /><div>
+        <a href=" {{ url_for('experiments') }} ">Use konrad</a>
+    </div></font>
+</body>
+</html>

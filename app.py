@@ -99,6 +99,14 @@ def read_about_konrad():
         return "<h2>Invalid request</h2>"
 
 
+@app.route('/all_models_are_wrong', methods=['GET'])
+def all_models_are_wrong():
+    if request.method == 'GET':
+        return render_template('all_models_are_wrong.html')
+    else:
+        return "<h2>Invalid request</h2>"
+
+
 # Launching our server
 if __name__ == '__main__':
     import os
