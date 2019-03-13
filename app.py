@@ -20,19 +20,19 @@ def plot_interactive_png():
 @app.route('/co2_exp', methods=['GET', 'POST'])
 def co2_exp():
     if request.method == 'GET':
-        state = {'exp1': 'co2x2', 'exp2': '', 'output': 'T'}
+        state = {'exp1': 'co2x2', 'exp2': '', 'exp3': '', 'output': 'T'}
         # send the user the form
         return render_template('CO2exp.html', state=state)
     elif request.method == 'POST':
         # read form data and check data type
         exp1 = request.form.get('exp1')
         exp2 = request.form.get('exp2')
-        print(exp1, exp2, type(exp2))
+        exp3 = request.form.get('exp3')
         output = request.form.get('output')
-        T, z, xlabel, xunits = model_run(exp1+exp2, output)
+        T, z, xlabel, xunits = model_run(exp1+exp2+exp3, output)
         SST0 = get_comparison(output, SST=True)
         mpld3_html = plot_interactive_png()
-        state = {'exp1': exp1, 'exp2': exp2, 'output': output}
+        state = {'exp1': exp1, 'exp2': exp2, 'exp3': exp3, 'output': output}
         if output == 'T':
             return render_template(
                 'SurfaceTemperature.html', SST_diff=T[0]-SST0, plot=mpld3_html,

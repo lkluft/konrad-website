@@ -40,7 +40,18 @@
         the amount of water vapour in the troposphere will increase such that the
         <abbr title="a fraction of the saturation humidity" tabindex="-1">relative humidity</abbr>
         remains constant.
-    </div></font>
+    </div><br />
+    <div>
+        As the troposphere warms, the change in temperature varies with height,
+        so the
+        <abbr title="around 10 km" tabindex="-1">upper troposphere</abbr>
+        warms more than the surface.
+        This variation influences both the greenhouse effect and humidity
+        and this is known as the
+        <abbr title="how quickly temperature decreases with increasing height"
+              tabindex="-1">lapse rate</abbr>
+        feedback.
+        </div></font>
     <h1>Experiments</h1>
     <form method="post">
         <font size=5>
@@ -56,6 +67,13 @@
             <select name="exp2">
                 <option value="" {% if state.exp2 =='' %} SELECTED{% endif %}>on</option>
                 <option value="_fvmr" {% if state.exp2 =='_fvmr' %} SELECTED{% endif %}>off</option>
+            </select>
+        </div>
+        <div>
+            <label for="exp3">Lapse rate feedback</label>
+            <select name="exp3">
+                <option value="" {% if state.exp3 =='' %} SELECTED{% endif %}>on</option>
+                <option value="_flapse" {% if state.exp3 =='_flapse' %} SELECTED{% endif %}>off</option>
             </select>
         </div>
             {% include 'SelectOutput.html' %}
