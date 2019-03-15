@@ -59,7 +59,7 @@ def get_comparison(output, SST=False):
 
 def create_interactive_figure():
     css = """
-    h6
+    h5
     {
       font-size: 1.5em;
       margin-top: 0.83em;
@@ -69,7 +69,7 @@ def create_interactive_figure():
       color: #0099ff;
       background-color: rgba(255,255,255,0.8);
     }
-    h5
+    h6
     {
       font-size: 1.5em;
       margin-top: 0.83em;
@@ -80,12 +80,14 @@ def create_interactive_figure():
       background-color: rgba(255,255,255,0.8);
     }
     """
+    c5 = '#0099ff'
+    c6 = '#ff3300'
 
     fig = plt.figure(figsize=(5, 7))
     ax = fig.gca()
     try:  # plot comparison if requested
         points_ref = ax.plot(comparison_T, comparison_z, marker='o', ms=5,
-                             label=comparison_label, c='#0099ff')
+                             label=comparison_label, c=c6)
 
         labels_ref = []
         for i in range(comparison_z.size):
@@ -99,7 +101,7 @@ def create_interactive_figure():
         comparison = False
         pass
 
-    points = ax.plot(T, z, marker='o', ms=5, label='your run', c='#ff3300')
+    points = ax.plot(T, z, marker='o', ms=5, label='your run', c=c5)
     plt.xlabel(f'{xlabel} [{xunits}]')
     plt.ylabel('Height [km]')
     plt.ylim(0, np.max(z))
