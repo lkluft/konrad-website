@@ -7,8 +7,35 @@
 </head>
 <body>
     <h2>The Sun</h2>
-    <font size=3><div>
-        In this experiment, we reduce solar irradiance by 5 percent.
+    <font size=4><div>
+        The Sun is the closest star to Earth, about 149.6 million km away.
+        Stars are balls of
+        <abbr title="a hot gas containing charged particles" tabindex="-1">
+            plasma</abbr>,
+        which produce energy by
+        <abbr title="Fusion is the process in which two small atomic nuclei
+        join to form one larger one, releasing energy. On the Sun, fusion
+        mostly converts hydrogen to helium." tabindex="-1">fusion</abbr>.
+        The Sun is the most important source of energy for life on Earth.
+        The amount of energy received in any place on Earth depends on
+        the location, the season and the time of day, with the
+        <abbr title="near the equator" tabindex="-1">tropics</abbr> receiving
+        more sunlight on average than the polar regions.
+        The light coming from the Sun contains mainly ultra-violet,
+        visible and infra-red radiation.
+    </div><br /><div>
+        In konrad, we normally don't model day and night, but instead we use a
+        constant value for the strength of sunlight.
+        The value used is a bit lower than the average of day and night in the
+        tropics (see the
+        <a href="{{ url_for('all_models_are_wrong') }}">model assumptions</a>
+        ).
+    </div><br /><div>
+        In this experiment, we reduce
+        <abbr title="the amount of sunlight" tabindex="-1">solar irradiance</abbr>
+        by 5 percent.
+        This would be equivalent to moving the Earth 3.9 million km further
+        away from the Sun.
     </div></font>
     <h1>Experiment - Weak Sun</h1>
     <form method="post">
