@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
+    <div>
+        <img src="{{ url_for('static', filename='ozone.png') }}" align="right"
+         alt="This sentence should be a diagram of an ozone molecule."
+         style="width:163px;height:135px;"></div>
     <h2>Ozone</h2>
     <font size=4><div>
         Ozone occurs naturally in the
@@ -19,6 +23,7 @@
         thick at the surface, but even though there is not of it, it absorbs
         lots of radiation.
     </div></font>
+    <br />
     <h1>Experiment - No Ozone</h1>
     <form method="post">
         <font size=5>

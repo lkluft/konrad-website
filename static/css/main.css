@@ -1,5 +1,11 @@
+html {
+  padding-left: 15pt;
+  padding-right: 10pt;
+}
+
 body {
-    margin-left: 15px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 abbr {

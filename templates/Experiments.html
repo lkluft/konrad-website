@@ -7,10 +7,10 @@
 </head>
 <body>
     <h1>Experiments</h1>
-    <img src="{{ url_for('static', filename='experiment.png') }}" align="left"
+    <div><img src="{{ url_for('static', filename='experiment.png') }}" align="left"
          alt="This sentence should be an experiment."
          style="width:223px;height:362px;">
-    <div>
+    </div><div>
         <font size=5>
             <a href=" {{ url_for('convection_exp') }} ">No convection</a>
         </font>
