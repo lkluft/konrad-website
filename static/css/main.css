@@ -9,11 +9,20 @@ body {
     font-family: 'Roboto', sans-serif;
     max-width: 1200px;
     margin: auto;
+    color: #333333;
+}
+
+a:link {
+  color: #1976d2;
+}
+
+a:visited {
+  color: #7b1fa2;
 }
 
 abbr {
   font-variant: none;
-  color: green;
+  color: #388e3c;
   cursor: pointer;
 }
 
