@@ -5,9 +5,26 @@ html {
   padding-right: 10pt;
 }
 
+h1 {
+    font-weight: 300;
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    font-weight: 300;
+    letter-spacing: -0.5px;
+}
+
+h3 {
+    font-weight: 400;
+    letter-spacing: 0px;
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 10px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
     max-width: 1200px;
     margin: auto;
     color: #333333;

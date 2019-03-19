@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>The greenhouse effect</h2>
-    <font size=4><div>
+    <div>
         CO<sub>2</sub> is a greenhouse gas, which means that it absorbs and
         emits
         <abbr title="In climate science, longwave radiation describes the
@@ -51,11 +51,10 @@
         <abbr title="how quickly temperature decreases with increasing height"
               tabindex="-1">lapse rate</abbr>
         feedback.
-        </div></font>
+        </div>
         <br />
     <h1>Experiments</h1>
     <form method="post">
-        <font size=5>
         <div>
             <label for="exp1">Increase CO<sub>2</sub></label>
             <select name="exp1">
@@ -81,7 +80,6 @@
         <div>
             <button type="submit">Get results</button>
         </div>
-        </font>
     </form>
     <div id="content">{% block content %}{% endblock %}</div>
 

@@ -7,7 +7,7 @@
 </head>
 <body>
     <div><h2>The Sun</h2></div>
-    <font size=4><div>
+    <div>
         The Sun is the closest star to Earth, about 149.6 million km away.
         Stars are balls of
         <abbr title="a hot gas containing charged particles" tabindex="-1">
@@ -41,15 +41,13 @@
         by 5 percent.
         This would be equivalent to moving the Earth 3.9 million km further
         away from the Sun.
-    </div></font><br />
+    </div><br />
     <h1>Experiment - Weak Sun</h1>
     <form method="post">
-        <font size=5>
             {% include 'SelectOutput.html' %}
         <div>
             <button type="submit">Get results</button>
         </div>
-        </font>
     </form>
 <div id="content">{% block content %}{% endblock %}</div>
 

@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Konrad</h1>
-        <div><font size=5>
+        <div>
             To learn about atmospheric processes and how they influence
             temperature, we can use climate models.
             Konrad is a single column model of the
@@ -19,10 +19,10 @@
             and
             <abbr title="the rising motion of warm low density air over colder
             denser air" tabindex="-1">convection</abbr>.
-        </font></div>
+        </div>
         <img src="{{ url_for('static', filename='profile-with-background.png') }}" alt="This sentence should be a diagram of the atmosphere with height.">
         <img src="{{ url_for('static', filename='convection-and-radiation.png') }}" alt="Here should be a diagram of the radiative transfer and convection.">
-        <div><font size=5>
+        <div>
             Many real world processes are missing from konrad, including
             cloud formation, winds and heat transport from the tropics to mid
             or high
@@ -34,19 +34,19 @@
             how the temperature depends on different gases,
             <abbr title="the amount of sunlight" tabindex="-1">solar irradiance</abbr>,
             and convection.
-        </font></div>
+        </div>
         <br />
-        <div><font size=4>
+        <div>
             <a href=" {{ url_for('read_about_konrad') }} ">Read more about konrad</a>
         </font></div>
         <br />
-        <div><font size=4>
+        <div>
             <a href=" {{ url_for('experiments') }} ">Start using konrad</a>
-        </font></div>
+        </div>
         <br />
-        <div><font size=4>
+        <div>
             <a href=" {{ url_for('about_us') }} ">About the developers</a>
-        </font></div>
+        </div>
         <br />
     </body>
 </html>

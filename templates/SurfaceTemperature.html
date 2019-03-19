@@ -1,10 +1,8 @@
 {% extends "CO2exp.html" %}
 {% block content %}
     <h1>Model output</h1>
-    <font size=5>
-        Your model input produces a surface temperature
-        {{ "{0:.1f}".format(SST_diff) }} K warmer than with pre-industrial
-        levels of CO<sub>2</sub>.
-    </font>
+    Your model input produces a surface temperature
+    {{ "{0:.1f}".format(SST_diff) }} K warmer than with pre-industrial
+    levels of CO<sub>2</sub>.
 {% include "ModelOutput.html" %}
 {% endblock %}

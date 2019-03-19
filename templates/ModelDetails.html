@@ -10,7 +10,7 @@
     <img src="{{ url_for('static', filename='model-flow.png') }}" align="left"
          alt="This sentence should be a diagram of the model flow."
          style="width:272px;height:657px;">
-    <div><font size=5>
+    <div>
         For a certain set of
         <abbr title="data that is fed to the model" tabindex="-1">input
             parameters</abbr>
@@ -55,9 +55,9 @@
         convection" tabindex="-1">total change</abbr> to the temperature
         profile becomes very small, and we say that the system has reached
         equilibrium.
-    </font></div>
+    </div>
     <br />
-    <div><font size=4>
+    <div>
         Konrad is written in
             <a href='https://www.python.org/' target='_blank'>python</a>
         and is available on
@@ -70,8 +70,7 @@
             <a href='http://rtweb.aer.com/rrtm_frame.html' target='_blank'>RRTMG</a>
         is written in fortran and made accessible through python by
             <a href='https://climt.readthedocs.io/en/latest/index.html' target='_blank'>climt</a>.
-    </font></div><br />
-    <font size="4">
+    </div><br />
     <div>
         <a href="{{ url_for('all_models_are_wrong') }}">Find out more about the assumptions in konrad</a>
     </div><br /><div>
@@ -80,6 +79,6 @@
         <a href=" {{ url_for('experiments') }} ">Start using konrad</a>
     </div><br /><div>
         <a href=" {{ url_for('about_us') }} ">About the developers</a>
-    </div></font>
+    </div>
 </body>
 </html>

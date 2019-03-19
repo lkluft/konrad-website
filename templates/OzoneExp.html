@@ -11,7 +11,7 @@
          alt="This sentence should be a diagram of an ozone molecule."
          style="width:163px;height:135px;"></div>
     <h2>Ozone</h2>
-    <font size=4><div>
+    <div>
         Ozone occurs naturally in the
         <abbr title="In the tropics, the stratosphere is between about 15 and
         50 km above the Earth's surface, but further from the equator it starts
@@ -22,16 +22,14 @@
         All of the ozone in the atmosphere would make a layer just 3 mm
         thick at the surface, but even though there is not of it, it absorbs
         lots of radiation.
-    </div></font>
+    </div>
     <br />
     <h1>Experiment - No Ozone</h1>
     <form method="post">
-        <font size=5>
             {% include 'SelectOutput.html' %}
         <div>
             <button type="submit">Get results</button>
         </div>
-        </font>
     </form>
 <div id="content">{% block content %}{% endblock %}</div>
 

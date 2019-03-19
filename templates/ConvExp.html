@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Convection</h2>
-    <font size=4><div>
+    <div>
         Convection is one of the main methods of heat transfer in the
         <abbr title="the lowest layer of the atmosphere, where clouds form and
         where temperature decreases with height" tabindex="-1">troposphere</abbr>.
@@ -20,15 +20,13 @@
         In konrad, convection takes energy from the surface and warms the
         atmosphere. If we stop convection in konrad, we will find radiative
         equilibrium.
-    </div></font><br />
+    </div><br />
     <h1>Experiment - No Convection</h1>
     <form method="post">
-        <font size=5>
             {% include 'SelectOutput.html' %}
         <div>
             <button type="submit">Get results</button>
         </div>
-        </font>
     </form>
 <div id="content">{% block content %}{% endblock %}</div>
 
